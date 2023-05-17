@@ -4,12 +4,22 @@ import mongoose from 'mongoose'
 import connectDB from './Models/config.js'
 import authRoutes from './Routes/AuthRoutes.js'
 import profileRoutes from './Routes/ProfileRoutes.js'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirPath = dirname(currentFilePath);
 
 
-const app = express() 
-app.use(express.json(),cors())
+
+const app = express()
+app.use(express.json(), cors())
 app.use('/', authRoutes)
 app.use('/profile', profileRoutes)
+app.use("/uploads",
+    express.static(path.join(currentDirPath, "uploads"))
+);
 
 app.use((err, req, res, next) => {
     if (err.code === 11000) {

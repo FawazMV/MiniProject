@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const userSchema = new mongoose.Schema
     (
         {
-            userName: {
+            username: {
                 type: String,
                 required: true,
                 unique: true,
@@ -17,10 +17,7 @@ const userSchema = new mongoose.Schema
                 type: String,
             },
             address: {
-                address: { type: String, required: true },
-                phone: { type: Number, required: true },
-                pin: { type: Number, required: true }
-
+                type: String, required: true
             }
         },
         {
